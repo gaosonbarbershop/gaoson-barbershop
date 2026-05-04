@@ -14,67 +14,68 @@ export type ServiceGroup = {
 export const serviceGroups: ServiceGroup[] = [
   {
     title: "Coupes",
-    caption: "Le geste qui fait tout.",
+    caption: "Le geste, la précision.",
     items: [
       {
-        name: "Coupe Homme",
-        price: "25 €",
-        duration: "30 min",
-        description: "Shampooing, coupe ciseaux ou tondeuse, finitions.",
-      },
-      {
-        name: "Coupe Enfant",
+        name: "Coupe",
         price: "20 €",
-        duration: "25 min",
-        description: "Pour les moins de 12 ans.",
+        duration: "20 min",
       },
       {
-        name: "Tondeuse seule",
-        price: "18 €",
-        duration: "20 min",
-        description: "Coupe entièrement à la tondeuse, contours soignés.",
+        name: "Coupe transformation",
+        price: "30 €",
+        duration: "35 min",
+        description: "Cheveux long à court.",
+      },
+      {
+        name: "Coupe enfant",
+        price: "15 €",
+        duration: "35 min",
+        description: "Jusqu'à 10 ans.",
+      },
+      {
+        name: "Dessin & design",
+        price: "5 €",
+        duration: "30 min",
+        description: "Motif rasoir sur-mesure.",
       },
     ],
   },
   {
-    title: "Barbe",
+    title: "Forfait",
+    caption: "Le rituel signature.",
+    items: [
+      {
+        name: "Coupe + barbe",
+        price: "25 €",
+        duration: "35 min",
+        description: "Le combo qui fait tout.",
+      },
+    ],
+  },
+  {
+    title: "Barbe & Technique",
     caption: "Sculptée, jamais bâclée.",
     items: [
       {
         name: "Taille de barbe",
-        price: "18 €",
-        duration: "20 min",
-        description: "Mise en forme, contours, soin hydratant.",
+        price: "15 €",
+        duration: "25 min",
       },
       {
-        name: "Rasage traditionnel",
-        price: "25 €",
+        name: "Coloration barbe",
+        price: "16 €",
+        duration: "15 min",
+      },
+      {
+        name: "Coloration",
+        price: "15 €+",
         duration: "30 min",
-        description: "Serviette chaude, mousse, rasoir, baume apaisant.",
-      },
-    ],
-  },
-  {
-    title: "Combos & Soins",
-    caption: "L'expérience complète.",
-    items: [
-      {
-        name: "Coupe + Barbe",
-        price: "38 €",
-        duration: "50 min",
-        description: "Le rituel signature de la maison.",
       },
       {
-        name: "Coupe + Rasage",
-        price: "45 €",
-        duration: "60 min",
-        description: "Coupe sur mesure et rasage à la lame.",
-      },
-      {
-        name: "Soin du visage",
-        price: "20 €",
-        duration: "20 min",
-        description: "Gommage, masque, hydratation.",
+        name: "Décoloration + coupe",
+        price: "65 €+",
+        duration: "2 h 30",
       },
     ],
   },

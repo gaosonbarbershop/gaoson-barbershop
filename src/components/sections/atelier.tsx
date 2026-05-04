@@ -5,42 +5,45 @@ import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
 
-const tiles = [
+type Tile = {
+  src: string;
+  alt: string;
+  span: string;
+  caption: string;
+  priority?: boolean;
+};
+
+const tiles: Tile[] = [
   {
-    src: "/images/atelier/atelier-1.svg",
-    alt: "Vue du fauteuil et du miroir",
-    span: "md:col-span-5 md:row-span-2 aspect-[4/5]",
-    caption: "Le rituel · 08:45",
+    src: "/images/atelier/salon-interior.jpg",
+    alt: "Vue intérieure du salon — chaises noires, miroirs ronds, sol béton",
+    span: "md:col-span-7 md:row-span-2 aspect-[4/5]",
+    caption: "L'atelier · Biot",
+    priority: true,
   },
   {
-    src: "/images/atelier/atelier-2.svg",
-    alt: "Détail outils barbier",
-    span: "md:col-span-7 aspect-[4/3]",
-    caption: "L'atelier",
+    src: "/images/atelier/hero-rooftop.jpg",
+    alt: "Coupe streetwear sur rooftop, skyline en arrière-plan",
+    span: "md:col-span-5 aspect-[4/3]",
+    caption: "Le rituel · noir & blanc",
   },
   {
     src: "/images/atelier/atelier-3.svg",
-    alt: "Coupe en action",
-    span: "md:col-span-3 aspect-[3/4]",
-    caption: "La coupe",
+    alt: "Lumière sur outils du barbier",
+    span: "md:col-span-2 aspect-square",
+    caption: "Outils",
   },
   {
     src: "/images/atelier/atelier-4.svg",
-    alt: "Sélection sneakers",
-    span: "md:col-span-4 aspect-square",
-    caption: "Le drop · 06.410",
-  },
-  {
-    src: "/images/atelier/atelier-5.svg",
-    alt: "Façade Gaoson Barber Shop",
-    span: "md:col-span-12 aspect-[16/7]",
-    caption: "32 Rue Saint-Sébastien — Biot",
+    alt: "Détail mobilier velours noir",
+    span: "md:col-span-3 aspect-square",
+    caption: "Velours",
   },
 ];
 
 export function Atelier() {
   return (
-    <section id="atelier" className="relative bg-coal/40">
+    <section id="atelier" className="relative">
       <div className="container-x section">
         <div className="mb-16 grid gap-10 md:mb-20 md:grid-cols-12">
           <div className="md:col-span-3">
@@ -52,9 +55,9 @@ export function Atelier() {
           </div>
           <div className="md:col-span-9">
             <SectionHeader
-              eyebrow="L'instant capturé"
-              title="Le lieu, la lumière, le geste."
-              caption="Quelques fragments du quotidien. Cuir, néons discrets, verre fumé — et toujours quelqu'un en train de couper, raser, ou parler kicks."
+              eyebrow="Le lieu, capté"
+              title="Cuir, lumière, béton, miroirs ronds."
+              caption="32 Rue Saint-Sébastien. Une seule pièce, deux fauteuils, deux miroirs lumineux. Le décor est posé, le geste fait le reste."
             />
           </div>
         </div>
@@ -77,11 +80,12 @@ export function Atelier() {
                 src={tile.src}
                 alt={tile.alt}
                 fill
+                priority={tile.priority}
                 className="object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-60" />
-              <figcaption className="font-mono absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.32em] text-ghost/85">
+              <figcaption className="font-mono absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.32em] text-ivory/95">
                 {tile.caption}
               </figcaption>
             </motion.figure>

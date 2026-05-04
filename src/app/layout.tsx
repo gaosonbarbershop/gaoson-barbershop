@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
-import { LenisProvider } from "@/components/lenis-provider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -115,7 +114,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <LenisProvider>{children}</LenisProvider>
+        {children}
       </body>
     </html>
   );

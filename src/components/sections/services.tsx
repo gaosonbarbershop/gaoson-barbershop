@@ -1,33 +1,47 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/section-header";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { BooksyButton } from "@/components/ui/booksy-button";
 import { serviceGroups } from "@/lib/services";
+import { site } from "@/lib/site";
 
 export function Services() {
   return (
-    <section id="services" className="relative bg-coal/40">
+    <section id="services" className="section-light relative">
       <div className="container-x section">
+        {/* Header */}
         <div className="mb-16 grid gap-10 md:mb-20 md:grid-cols-12">
           <div className="md:col-span-3">
             <Reveal>
-              <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/70">
+              <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink/70">
                 ‹ 02 / Services ›
               </p>
             </Reveal>
           </div>
           <div className="md:col-span-9">
-            <SectionHeader
-              eyebrow="Tarifs"
-              title="Le geste, la lame, le détail."
-              caption="Trois familles, un seul standard. Tous nos rendez-vous incluent shampooing, finitions et un café — ou ce que tu préfères."
-            />
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink/55">
+                Tarifs Booksy
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-display mt-5 text-balance text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl lg:text-7xl">
+                Le geste, la lame,{" "}
+                <span className="italic">le détail.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/75 sm:text-lg">
+                Trois familles, un seul standard. Tous les rendez-vous incluent
+                shampooing et finitions — paiement sur place (CB ou espèces).
+              </p>
+            </Reveal>
           </div>
         </div>
 
-        <div className="grid gap-px overflow-hidden border hairline bg-border md:grid-cols-3">
+        {/* Grid */}
+        <div className="grid gap-px overflow-hidden border border-ink/15 bg-ink/15 md:grid-cols-3">
           {serviceGroups.map((group, gi) => (
             <motion.div
               key={group.title}
@@ -39,41 +53,41 @@ export function Services() {
                 delay: gi * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group flex flex-col bg-ink p-8 md:p-10 lg:p-12"
+              className="flex flex-col bg-ivory p-8 md:p-10 lg:p-12"
             >
               <div className="mb-10">
-                <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-ivory/70">
+                <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink/55">
                   {String(gi + 1).padStart(2, "0")}
                 </p>
-                <h3 className="font-display mt-4 text-3xl text-ghost md:text-4xl">
+                <h3 className="font-display mt-4 text-3xl text-ink md:text-4xl">
                   {group.title}
                 </h3>
-                <p className="mt-3 text-sm italic text-bone/70">
+                <p className="mt-3 text-sm italic text-ink/65">
                   {group.caption}
                 </p>
               </div>
 
-              <ul className="mt-auto flex flex-col divide-y hairline">
+              <ul className="mt-auto flex flex-col divide-y divide-ink/10">
                 {group.items.map((item) => (
                   <li
                     key={item.name}
                     className="flex flex-col gap-1 py-5 first:pt-0 last:pb-0"
                   >
                     <div className="flex items-baseline justify-between gap-4">
-                      <p className="text-base text-ghost">{item.name}</p>
-                      <span className="font-mono text-sm text-ivory">
+                      <p className="text-base text-ink">{item.name}</p>
+                      <span className="font-mono text-sm text-ink">
                         {item.price}
                       </span>
                     </div>
                     <div className="flex items-baseline justify-between gap-4">
                       {item.description ? (
-                        <p className="max-w-[28ch] text-xs leading-relaxed text-bone/55">
+                        <p className="max-w-[28ch] text-xs leading-relaxed text-ink/55">
                           {item.description}
                         </p>
                       ) : (
                         <span />
                       )}
-                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-bone/45">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink/55">
                         {item.duration}
                       </span>
                     </div>
@@ -84,13 +98,26 @@ export function Services() {
           ))}
         </div>
 
+        {/* Footer */}
         <Reveal delay={0.2}>
           <div className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-md text-sm text-bone/60">
-              Tarifs indicatifs susceptibles d&apos;ajustement selon la longueur
-              et la coiffure souhaitée. Paiement sur place — CB, espèces.
+            <p className="max-w-md text-sm text-ink/65">
+              Tarifs susceptibles d&apos;ajustement selon longueur et type de
+              prestation. La réservation se fait via Booksy.
             </p>
-            <BooksyButton variant="primary" label="Prendre rendez-vous" />
+            <a
+              href={site.links.booksy}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 bg-ink px-7 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ivory transition-colors duration-500 hover:bg-graphite"
+            >
+              Prendre rendez-vous
+              <ArrowUpRight
+                size={16}
+                strokeWidth={1.5}
+                className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
           </div>
         </Reveal>
       </div>

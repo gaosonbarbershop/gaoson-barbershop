@@ -12,7 +12,7 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
@@ -22,19 +22,18 @@ export function Hero() {
       className="relative isolate min-h-[100svh] overflow-hidden grain"
     >
       {/* Background */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 -z-10"
-      >
+      <motion.div style={{ y }} className="absolute inset-0 -z-10">
         <Image
-          src="/images/hero-bg.svg"
-          alt=""
+          src="/images/atelier/hero-rooftop.jpg"
+          alt="Coupe en plein air, skyline urbaine"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink" />
+        {/* Vignette + bottom fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/30" />
       </motion.div>
 
       {/* Top corner labels */}
@@ -44,7 +43,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60"
+            className="font-mono text-[11px] uppercase tracking-[0.32em] text-ivory/80"
           >
             Est. Biot · Côte d'Azur
           </motion.p>
@@ -52,7 +51,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono hidden text-[11px] uppercase tracking-[0.32em] text-bone/60 md:block"
+            className="font-mono hidden text-[11px] uppercase tracking-[0.32em] text-ivory/80 md:block"
           >
             06 · 410
           </motion.p>
@@ -66,7 +65,7 @@ export function Hero() {
       >
         <h1
           aria-label={`${site.name} — ${site.tagline}`}
-          className="font-display text-balance leading-[0.86] text-ghost"
+          className="font-display text-balance leading-[0.86] text-ivory"
         >
           <motion.span
             initial={{ opacity: 0, y: 40 }}
@@ -80,7 +79,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="block italic text-[clamp(3.5rem,14vw,13rem)] text-ivory"
+            className="block italic text-[clamp(3.5rem,14vw,13rem)] text-ghost/95"
           >
             Barber Shop.
           </motion.span>
@@ -92,7 +91,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mt-12 grid gap-10 md:grid-cols-[1fr_auto] md:items-end md:gap-16"
         >
-          <p className="max-w-md text-base leading-relaxed text-bone/85 sm:text-lg">
+          <p className="max-w-md text-base leading-relaxed text-ghost sm:text-lg">
             <span className="text-ivory">Crafted cuts.</span>{" "}
             <span className="text-ivory">Curated kicks.</span>
             <br className="hidden sm:block" />
@@ -102,7 +101,7 @@ export function Hero() {
 
           <div className="flex flex-col items-start gap-5 md:items-end">
             <BooksyButton />
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-ivory/65">
               ou Mar — Dim · 08:45 — 19:00
             </p>
           </div>
@@ -125,12 +124,12 @@ export function Hero() {
               delay: 0.8 + i * 0.1,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="border-t hairline pt-4"
+            className="border-t border-ivory/15 pt-4"
           >
-            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/50">
+            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-ivory/60">
               {item.label}
             </p>
-            <p className="mt-2 text-sm text-ghost/90">{item.value}</p>
+            <p className="mt-2 text-sm text-ivory/95">{item.value}</p>
           </motion.div>
         ))}
       </div>
@@ -145,7 +144,7 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="font-mono text-[10px] uppercase tracking-[0.4em] text-bone/40"
+          className="font-mono text-[10px] uppercase tracking-[0.4em] text-ivory/55"
         >
           Scroll ↓
         </motion.div>

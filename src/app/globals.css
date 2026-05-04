@@ -49,6 +49,10 @@
   color-scheme: dark;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   background: var(--color-ink);
   color: var(--color-ghost);
@@ -63,15 +67,6 @@ html, body {
   background: var(--color-ivory);
   color: var(--color-ink);
 }
-
-::-webkit-scrollbar { width: 0; height: 0; }
-
-/* Lenis smooth scroll */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-scrolling iframe { pointer-events: none; }
 
 /* Grain noise overlay */
 .grain {
@@ -89,6 +84,7 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -134,4 +130,17 @@ html.lenis, html.lenis body { height: auto; }
 /* Subtle border helper */
 .hairline {
   border-color: var(--color-border);
+}
+
+/* Light section — fond crème, texte ink (contraste fort) */
+.section-light {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+}
+.section-light .hairline {
+  border-color: rgba(5, 5, 5, 0.12);
+}
+.section-light ::selection {
+  background: var(--color-ink);
+  color: var(--color-ivory);
 }
