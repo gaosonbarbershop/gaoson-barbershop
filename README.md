@@ -8,8 +8,9 @@ Site one-page premium pour [Gaoson's Barber Shop](https://gaoson-barbershop.fr) 
 
 - **Next.js 16** (App Router) + **TypeScript** strict
 - **Tailwind CSS v4** (config-in-CSS via `@theme`)
-- **Framer Motion** + **Auto-Animate** (reveals at scroll, micro-interactions)
-- **Cloudflare Pages** (static export, `output: "export"`)
+- **Framer Motion** (reveals at scroll, micro-interactions)
+- **Decap CMS** (édition du contenu via interface web `/admin`)
+- **Cloudflare Pages** (static export + Pages Functions pour OAuth GitHub)
 
 ## Démarrer en local
 
@@ -28,51 +29,68 @@ npm run build        # → /out
 
 ```
 src/
-  app/                  # layout, page, sitemap, globals.css
+  app/                  # layout, page (server), sitemap, globals.css
   components/
     sections/           # Hero, Manifesto, Services, Atelier, Reviews, Visit, Footer
     ui/                 # BooksyButton, Reveal, SectionHeader, Marquee
     icons/              # InstagramIcon (SVG inline)
-    logo.tsx            # Wordmark Gaoson's via mask-image (SVG vectorisé)
+    logo.tsx            # Wordmark Gaoson's en blackletter (UnifrakturMaguntia)
+    site-context.tsx    # Provider/hook pour passer `site` aux client components
     site-nav.tsx
   lib/
-    site.ts             # infos établissement (adresse, horaires, liens)
-    services.ts         # tarifs salon
+    site.ts             # types
+    site.server.ts      # loader YAML (server-only)
+    services.ts         # types
+    services.server.ts  # loader YAML
+    manifesto.ts        # types
+    manifesto.server.ts # loader markdown
+    atelier.ts          # types
+    atelier.server.ts   # loader markdown
     utils.ts            # cn()
 
+content/                # ← édité via Decap CMS
+  site.yml              # coordonnées, horaires, liens, mentions légales
+  services.yml          # groupes de prestations + prix
+  manifesto.md          # textes du Hero + section Manifesto
+  atelier/              # photos de la galerie (1 .md par photo)
+
+functions/              # Cloudflare Pages Functions
+  auth.js               # /auth → start OAuth GitHub
+  callback.js           # /callback → exchange code → token → postMessage
+
 public/
+  admin/                # Decap CMS admin UI (/admin)
+    index.html
+    config.yml          # définition des collections
   images/
-    logo-gaoson.svg     # wordmark vectorisé
-    atelier/            # photos salon + rooftop
-    hero-bg.svg
-
-scripts/
-  vectorize-logo.mjs    # régénère le SVG depuis un JPG source
+    atelier/            # photos uploadées via Decap
 ```
 
-## Modifier les services / tarifs
+## Modifier le contenu via le CMS
 
-Édite directement [src/lib/services.ts](src/lib/services.ts).
+Une fois en prod, va sur `https://gaoson-barbershop.fr/admin/`. Connecte-toi
+avec ton compte GitHub (autorisé sur le repo `gaosonbarbershop`). Tu peux
+éditer 4 collections :
 
-## Modifier les coordonnées / horaires / liens
+1. **Coordonnées & horaires** — adresse, horaires, liens Booksy/Insta,
+   SIRET, mentions légales (single file `site.yml`)
+2. **Services & Tarifs** — les 3 groupes de prestations avec prix/durée
+   (single file `services.yml`)
+3. **Manifeste & Hero** — textes du Hero et de la section Maison, KPIs,
+   marquee (`manifesto.md`)
+4. **Galerie atelier** — ajouter / modifier / réordonner les photos du salon
+   (folder `atelier/*.md`, photos uploadées dans `/public/images/atelier`)
 
-Édite [src/lib/site.ts](src/lib/site.ts).
+Chaque édition commit automatiquement sur la branche `main`. Cloudflare
+Pages re-build et déploie en ~30 secondes.
 
-## Régénérer le logo SVG depuis un nouveau visuel
+### Édition en local (sans Decap)
 
-Place le JPG/PNG source dans `public/images/logo-gaoson.jpg` puis :
-
-```bash
-node scripts/vectorize-logo.mjs
-```
-
-Le script (sharp + potrace) preprocess l'image (crop de la bordure, blur,
-binarise, crop bbox des glyphes) et émet un SVG `currentColor` que tu peux
-teinter via la `color` du parent.
+Tu peux aussi éditer directement les fichiers YAML/MD dans `content/`.
 
 ## Déploiement
 
-### Cloudflare Pages
+### 1. Cloudflare Pages — site + Pages Functions
 
 1. Connecte le repo GitHub à Cloudflare Pages.
 2. Build settings :
@@ -82,7 +100,31 @@ teinter via la `color` du parent.
    - **Node version** : 20 (via `.nvmrc`)
 3. Custom domain : `gaoson-barbershop.fr` (DNS Cloudflare).
 
-### DNS
+Le dossier `functions/` est automatiquement détecté par Cloudflare Pages
+et déployé comme Functions à côté du site statique. Pas de config
+supplémentaire.
+
+### 2. GitHub OAuth App (pour Decap CMS)
+
+Sur le compte GitHub `gaosonbarbershop` :
+
+1. Va sur **github.com/settings/developers** → **New OAuth App**
+2. **Application name** : `Gaoson Barber Shop CMS`
+3. **Homepage URL** : `https://gaoson-barbershop.fr`
+4. **Authorization callback URL** : `https://gaoson-barbershop.fr/callback`
+5. Crée l'app, note **Client ID**, génère un **Client Secret**.
+
+### 3. Variables d'environnement Cloudflare Pages
+
+Dans le dashboard Cloudflare Pages → ton projet → **Settings** →
+**Environment variables**, ajoute pour **Production** + **Preview** :
+
+- `GITHUB_CLIENT_ID` — ton Client ID
+- `GITHUB_CLIENT_SECRET` — ton Client Secret (coche **Encrypt** pour le secret)
+
+Re-deploy le projet après avoir ajouté les variables.
+
+### 4. DNS
 
 `gaoson-barbershop.fr` → CNAME → `<projet>.pages.dev`
 (géré dans le dashboard Cloudflare Pages, onglet Custom Domains)
@@ -90,11 +132,12 @@ teinter via la `color` du parent.
 ## Performance & SEO
 
 - ✓ Static export (TTFB instant, edge-cached partout)
-- ✓ `next/font` (Instrument Serif, Inter Tight, JetBrains Mono — display: swap)
+- ✓ Pages Functions pour OAuth uniquement (le site reste statique)
+- ✓ `next/font` (Instrument Serif, Inter Tight, JetBrains Mono, UnifrakturMaguntia — display: swap)
 - ✓ JSON-LD Schema.org `HairSalon` dans le layout
 - ✓ `robots.txt` + `sitemap.xml`
 - ✓ Open Graph + Twitter Cards
-- ✓ `prefers-reduced-motion` respecté sur toutes les animations
+- ✓ `prefers-reduced-motion` respecté
 - ✓ Mobile-first, viewport responsive
 
 ## Crédits

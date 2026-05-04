@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { BooksyButton } from "@/components/ui/booksy-button";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
+import type { Manifesto } from "@/lib/manifesto";
 
-export function Hero() {
+export function Hero({ manifesto }: { manifesto: Manifesto }) {
+  const site = useSite();
+
   return (
     <section
       id="hero"
@@ -34,7 +37,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-[11px] uppercase tracking-[0.32em] text-ivory/80"
           >
-            Est. Biot · Côte d&apos;Azur
+            Est. {site.address.city} · Côte d&apos;Azur
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -42,7 +45,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono hidden text-[11px] uppercase tracking-[0.32em] text-ivory/80 md:block"
           >
-            06 · 410
+            {site.address.postalCode.replace(/(\d{2})(\d{3})/, "$1 · $2")}
           </motion.p>
         </div>
       </div>
@@ -78,17 +81,15 @@ export function Hero() {
           className="mt-12 grid gap-10 md:grid-cols-[1fr_auto] md:items-end md:gap-16"
         >
           <p className="max-w-md text-base leading-relaxed text-ghost sm:text-lg">
-            <span className="text-ivory">Crafted cuts.</span>{" "}
-            <span className="text-ivory">Sharp style.</span>
+            <span className="text-ivory">{manifesto.heroAccent}</span>
             <br className="hidden sm:block" />
-            Salon de coiffure homme premium ancré au cœur de Biot. Coupe nette,
-            barbe sculptée, rasage à la lame.
+            {manifesto.heroDescription}
           </p>
 
           <div className="flex flex-col items-start gap-5 md:items-end">
             <BooksyButton />
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-ivory/65">
-              ou Mar — Dim · 08:45 — 19:00
+              ou {site.hours[0]?.days} · {site.hours[0]?.time}
             </p>
           </div>
         </motion.div>
@@ -98,8 +99,11 @@ export function Hero() {
       <div className="container-x relative z-10 mt-20 grid gap-3 pb-12 md:mt-32 md:grid-cols-3 md:gap-6">
         {[
           { label: "Adresse", value: site.address.full },
-          { label: "Ouvert", value: "Mar — Dim · 08:45 — 19:00" },
-          { label: "Repos", value: "Lundi" },
+          {
+            label: "Ouvert",
+            value: `${site.hours[0]?.days} · ${site.hours[0]?.time}`,
+          },
+          { label: "Repos", value: site.hours[1]?.days ?? "Lundi" },
         ].map((item, i) => (
           <motion.div
             key={item.label}

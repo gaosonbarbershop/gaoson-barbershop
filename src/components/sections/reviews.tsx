@@ -3,9 +3,11 @@
 import Script from "next/script";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 
 export function Reviews() {
+  const site = useSite();
+
   return (
     <section id="avis" className="relative">
       <div className="container-x section">

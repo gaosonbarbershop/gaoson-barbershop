@@ -4,44 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
+import type { AtelierTile } from "@/lib/atelier";
 
-type Tile = {
-  src: string;
-  alt: string;
-  span: string;
-  caption: string;
-  priority?: boolean;
+const SIZE_CLASS: Record<AtelierTile["size"], string> = {
+  large: "md:col-span-7 md:row-span-2 aspect-[4/5]",
+  medium: "md:col-span-5 aspect-[4/3]",
+  small: "md:col-span-2 aspect-square",
 };
 
-const tiles: Tile[] = [
-  {
-    src: "/images/atelier/salon-interior.jpg",
-    alt: "Vue intérieure du salon — chaises noires, miroirs ronds, sol béton",
-    span: "md:col-span-7 md:row-span-2 aspect-[4/5]",
-    caption: "L'atelier · Biot",
-    priority: true,
-  },
-  {
-    src: "/images/atelier/hero-rooftop.jpg",
-    alt: "Coupe streetwear sur rooftop, skyline en arrière-plan",
-    span: "md:col-span-5 aspect-[4/3]",
-    caption: "Le rituel · noir & blanc",
-  },
-  {
-    src: "/images/atelier/atelier-3.svg",
-    alt: "Lumière sur outils du barbier",
-    span: "md:col-span-2 aspect-square",
-    caption: "Outils",
-  },
-  {
-    src: "/images/atelier/atelier-4.svg",
-    alt: "Détail mobilier velours noir",
-    span: "md:col-span-3 aspect-square",
-    caption: "Velours",
-  },
-];
-
-export function Atelier() {
+export function Atelier({ tiles }: { tiles: AtelierTile[] }) {
   return (
     <section id="atelier" className="relative">
       <div className="container-x section">
@@ -65,7 +36,7 @@ export function Atelier() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-12 md:gap-4">
           {tiles.map((tile, i) => (
             <motion.figure
-              key={tile.src}
+              key={tile.slug}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -74,13 +45,13 @@ export function Atelier() {
                 delay: i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`group relative overflow-hidden border hairline bg-graphite ${tile.span}`}
+              className={`group relative overflow-hidden border hairline bg-graphite ${SIZE_CLASS[tile.size]}`}
             >
               <Image
-                src={tile.src}
+                src={tile.image}
                 alt={tile.alt}
                 fill
-                priority={tile.priority}
+                priority={i === 0}
                 className="object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

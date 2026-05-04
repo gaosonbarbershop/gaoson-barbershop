@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { InstagramIcon } from "@/components/icons/instagram-icon";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 
 export function Visit() {
+  const site = useSite();
+
   return (
     <section id="visite" className="section-light relative">
       <div className="container-x section">

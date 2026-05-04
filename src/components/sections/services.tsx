@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { serviceGroups } from "@/lib/services";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
+import type { ServiceGroup } from "@/lib/services";
 
-export function Services() {
+export function Services({ groups }: { groups: ServiceGroup[] }) {
+  const site = useSite();
+
   return (
     <section id="services" className="section-light relative">
       <div className="container-x section">
@@ -42,7 +44,7 @@ export function Services() {
 
         {/* Grid */}
         <div className="grid gap-px overflow-hidden border border-ink/15 bg-ink/15 md:grid-cols-3">
-          {serviceGroups.map((group, gi) => (
+          {groups.map((group, gi) => (
             <motion.div
               key={group.title}
               initial={{ opacity: 0, y: 24 }}

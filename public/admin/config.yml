@@ -1,0 +1,124 @@
+backend:
+  name: github
+  repo: gaosonbarbershop/gaoson-barbershop
+  branch: main
+  base_url: https://gaoson-barbershop.fr
+  auth_endpoint: auth
+
+publish_mode: simple
+media_folder: "public/images/atelier"
+public_folder: "/images/atelier"
+locale: fr
+site_url: https://gaoson-barbershop.fr
+display_url: https://gaoson-barbershop.fr
+logo_url: /favicon.ico
+
+collections:
+  - name: settings
+    label: "Coordonnées & horaires"
+    files:
+      - file: "content/site.yml"
+        label: "Infos établissement"
+        name: site
+        format: yml
+        fields:
+          - { name: name, label: "Nom complet", widget: string, required: true }
+          - { name: shortName, label: "Nom court", widget: string, required: true, hint: "Utilisé dans les meta titles" }
+          - { name: tagline, label: "Tagline", widget: string, required: true }
+          - { name: description, label: "Description (SEO)", widget: text, required: true, hint: "1 à 2 phrases — apparaît dans Google et les partages." }
+          - name: address
+            label: "Adresse"
+            widget: object
+            fields:
+              - { name: street, label: "Rue", widget: string }
+              - { name: postalCode, label: "Code postal", widget: string }
+              - { name: city, label: "Ville", widget: string }
+              - { name: country, label: "Pays", widget: string, default: "France" }
+          - name: hours
+            label: "Horaires"
+            widget: list
+            summary: "{{fields.days}} — {{fields.time}}"
+            fields:
+              - { name: days, label: "Jours", widget: string, hint: "Ex: Mardi — Dimanche" }
+              - { name: time, label: "Horaire", widget: string, hint: "Ex: 08:45 — 19:00 ou Fermé" }
+          - name: links
+            label: "Liens externes"
+            widget: object
+            fields:
+              - { name: booksy, label: "URL Booksy", widget: string }
+              - { name: instagram, label: "URL Instagram", widget: string }
+              - { name: googleMaps, label: "URL Google Maps", widget: string }
+          - name: legal
+            label: "Mentions légales"
+            widget: object
+            fields:
+              - { name: siret, label: "SIRET", widget: string }
+              - { name: hostName, label: "Nom hébergeur", widget: string }
+              - { name: hostAddress, label: "Adresse hébergeur", widget: string }
+          - { name: elfsightWidgetId, label: "ID widget Elfsight (avis Google)", widget: string, hint: "Ex: dbe5b599-f9b6-4952-a657-b26fe8c232c5" }
+
+  - name: services
+    label: "Services & Tarifs"
+    files:
+      - file: "content/services.yml"
+        label: "Tarifs"
+        name: services
+        format: yml
+        fields:
+          - name: groups
+            label: "Groupes de services"
+            widget: list
+            summary: "{{fields.title}} — {{fields.items.length}} prestations"
+            fields:
+              - { name: title, label: "Titre du groupe", widget: string, hint: "Ex: Coupes, Forfait, Barbe & Technique" }
+              - { name: caption, label: "Sous-titre italique", widget: string }
+              - name: items
+                label: "Prestations"
+                widget: list
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - { name: name, label: "Nom de la prestation", widget: string }
+                  - { name: price, label: "Prix", widget: string, hint: "Ex: 25 € ou 65 €+" }
+                  - { name: duration, label: "Durée", widget: string, hint: "Ex: 30 min ou 2 h 30" }
+                  - { name: description, label: "Description courte", widget: string, required: false }
+
+  - name: manifesto
+    label: "Manifeste & Hero"
+    files:
+      - file: "content/manifesto.md"
+        label: "Texte du manifesto"
+        name: manifesto
+        fields:
+          - { name: title, label: "Titre du manifeste", widget: string, hint: "Apparaît en gros dans la section Maison" }
+          - { name: heroAccent, label: "Accent du hero", widget: string, hint: "Ex: Crafted cuts. Sharp style." }
+          - { name: heroDescription, label: "Description hero", widget: text }
+          - { name: paragraph1, label: "Paragraphe 1 (gauche)", widget: text, hint: "Markdown supporté: **gras** pour les mots clés" }
+          - { name: paragraph2, label: "Paragraphe 2 (droite)", widget: text, hint: "Markdown supporté: **gras** pour les mots clés" }
+          - name: kpis
+            label: "Chiffres clés (4)"
+            widget: list
+            min: 4
+            max: 4
+            fields:
+              - { name: kpi, label: "Chiffre / Valeur", widget: string }
+              - { name: label, label: "Légende", widget: string }
+          - name: marquee
+            label: "Marquee (texte qui défile)"
+            widget: list
+            field: { name: text, label: "Texte", widget: string }
+
+  - name: atelier
+    label: "Galerie atelier"
+    label_singular: "Photo"
+    folder: "content/atelier"
+    create: true
+    delete: true
+    slug: "{{order}}-{{slug}}"
+    summary: "{{order}} · {{caption}} ({{size}})"
+    sortable_fields: [order]
+    fields:
+      - { name: order, label: "Ordre d'affichage", widget: number, value_type: int, default: 99, hint: "Plus petit = en haut" }
+      - { name: image, label: "Photo", widget: image }
+      - { name: alt, label: "Texte alternatif (a11y)", widget: string }
+      - { name: caption, label: "Légende affichée", widget: string }
+      - { name: size, label: "Taille de tuile", widget: select, options: [small, medium, large], default: medium, hint: "Large = grande tuile carrée, Medium = paysage, Small = carré" }

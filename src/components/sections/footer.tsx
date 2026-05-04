@@ -1,9 +1,12 @@
+"use client";
+
 import { InstagramIcon } from "@/components/icons/instagram-icon";
 import { Marquee } from "@/components/ui/marquee";
 import { Logo } from "@/components/logo";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 
 export function Footer() {
+  const site = useSite();
   const year = new Date().getFullYear();
 
   return (
@@ -12,8 +15,8 @@ export function Footer() {
         items={[
           "Crafted cuts",
           "Sharp style",
-          "Biot · 06410",
-          "Mar — Dim · 08:45 — 19:00",
+          `${site.address.city} · ${site.address.postalCode}`,
+          `${site.hours[0]?.days} · ${site.hours[0]?.time}`,
           "Booksy ↗",
         ]}
       />
@@ -132,6 +135,15 @@ export function Footer() {
           <p>
             Hébergé par {site.legal.host.name} —{" "}
             <span className="hidden sm:inline">{site.legal.host.address}</span>
+          </p>
+          <p>
+            <a
+              href="/admin/"
+              className="text-bone/55 hover:text-ivory"
+              aria-label="Espace gestion"
+            >
+              Espace gestion ↗
+            </a>
           </p>
         </div>
       </div>

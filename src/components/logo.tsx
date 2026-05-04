@@ -1,27 +1,28 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 
 /**
  * Wordmark Gaoson's en blackletter (UnifrakturMaguntia) + sous-titre
- * BARBER SHOP en sans-serif technique. Hérite de `color` du parent —
- * fonctionne sur fond ink ou ivory sans changer de fichier.
- *
- * Layout fluide via `font-size`. Utilise `text-` Tailwind ou un fontSize
- * explicite via le className.
+ * BARBER SHOP en sans-serif technique. Hérite de `color` du parent.
  */
 export function Logo({
   className,
   showSubtitle = true,
-  ariaLabel = `${site.name} — wordmark`,
+  ariaLabel,
 }: {
   className?: string;
   showSubtitle?: boolean;
   ariaLabel?: string;
 }) {
+  const site = useSite();
+  const label = ariaLabel ?? `${site.name} — wordmark`;
+
   return (
     <span
       role="img"
-      aria-label={ariaLabel}
+      aria-label={label}
       className={cn("inline-flex flex-col items-center leading-none", className)}
     >
       <span aria-hidden="true" className="font-wordmark tracking-tight">

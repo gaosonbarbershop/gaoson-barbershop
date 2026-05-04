@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 
 type Variant = "primary" | "ghost";
 
@@ -11,7 +11,7 @@ export function BooksyButton({
   variant = "primary",
   className,
   label = "Réserver sur Booksy",
-  href = site.links.booksy,
+  href,
   external = true,
 }: {
   variant?: Variant;
@@ -20,6 +20,9 @@ export function BooksyButton({
   href?: string;
   external?: boolean;
 }) {
+  const site = useSite();
+  const finalHref = href ?? site.links.booksy;
+
   const base =
     "group relative inline-flex items-center gap-3 px-7 py-4 text-sm uppercase tracking-[0.18em] font-medium overflow-hidden transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]";
 
@@ -30,7 +33,7 @@ export function BooksyButton({
 
   return (
     <motion.a
-      href={href}
+      href={finalHref}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       className={cn(base, styles, className)}

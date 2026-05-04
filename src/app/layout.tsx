@@ -5,8 +5,10 @@ import {
   JetBrains_Mono,
   UnifrakturMaguntia,
 } from "next/font/google";
-import { site } from "@/lib/site";
+import { getSite } from "@/lib/site.server";
 import "./globals.css";
+
+const site = getSite();
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { site } from "@/lib/site";
+import { useSite } from "@/components/site-context";
 import { BooksyButton } from "./ui/booksy-button";
 import { Logo } from "./logo";
 
@@ -16,6 +16,7 @@ const links = [
 ];
 
 export function SiteNav() {
+  const site = useSite();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
