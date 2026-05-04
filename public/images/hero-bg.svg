@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="hg1" cx="20%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#2b2520" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="hg2" cx="80%" cy="80%" r="60%">
+      <stop offset="0%" stop-color="#3a3028" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hn">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="#050505"/>
+  <rect width="1920" height="1080" fill="url(#hg1)"/>
+  <rect width="1920" height="1080" fill="url(#hg2)"/>
+  <rect width="1920" height="1080" filter="url(#hn)"/>
+</svg>

@@ -1,0 +1,11 @@
+name = "gaoson-cms-oauth"
+main = "src/worker.ts"
+compatibility_date = "2025-01-01"
+
+# Variables (clear) — set the secrets via `wrangler secret put`:
+#   wrangler secret put GITHUB_CLIENT_ID
+#   wrangler secret put GITHUB_CLIENT_SECRET
+#
+# Optional override:
+# [vars]
+# REDIRECT_URL = "https://gaoson-barbershop.fr/admin/"
