@@ -47,7 +47,7 @@ export function Services() {
               key={group.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true }}
               transition={{
                 duration: 0.9,
                 delay: gi * 0.08,

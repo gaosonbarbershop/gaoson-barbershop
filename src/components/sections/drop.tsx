@@ -69,7 +69,7 @@ export function Drop({ items }: { items: Sneaker[] }) {
                 key={item.slug}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true }}
                 transition={{
                   duration: 0.9,
                   delay: (i % 3) * 0.08,

@@ -68,7 +68,7 @@ export function Atelier() {
               key={tile.src}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true }}
               transition={{
                 duration: 1,
                 delay: i * 0.08,

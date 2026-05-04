@@ -1,18 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { Marquee } from "@/components/ui/marquee";
 
 export function Manifesto() {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
   return (
     <section id="manifesto" className="relative">
       <Marquee
@@ -21,12 +12,12 @@ export function Manifesto() {
           "Curated kicks",
           "Biot · 06410",
           "Heritage × Streetwear",
-          "Depuis 2015",
           "Mar — Dim",
+          "Booksy ↗",
         ]}
       />
 
-      <div ref={ref} className="container-x section">
+      <div className="container-x section">
         <div className="grid gap-16 md:grid-cols-12 md:gap-12">
           <Reveal className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/70">
@@ -45,21 +36,30 @@ export function Manifesto() {
               </h2>
             </Reveal>
 
-            <motion.div
-              style={{ y }}
-              className="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-12"
-            >
+            <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-12">
               <Reveal delay={0.15}>
                 <p className="text-base leading-relaxed text-bone/80 sm:text-lg">
-                  Gaoson&apos;s, c&apos;est un atelier où la <em className="not-italic text-ivory">précision du geste</em> rencontre la <em className="not-italic text-ivory">culture de la rue</em>. Une coupe nette. Une barbe sculptée. Un rasage à la lame. Le rituel masculin, sans compromis, dans un décor qui respire le cuir, le bois et le néon discret.
+                  Gaoson&apos;s, c&apos;est un atelier où la{" "}
+                  <em className="not-italic text-ivory">précision du geste</em>{" "}
+                  rencontre la{" "}
+                  <em className="not-italic text-ivory">culture de la rue</em>.
+                  Une coupe nette. Une barbe sculptée. Un rasage à la lame. Le
+                  rituel masculin, sans compromis, dans un décor qui respire le
+                  cuir, le bois et le néon discret.
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
                 <p className="text-base leading-relaxed text-bone/80 sm:text-lg">
-                  Et puis il y a le <em className="not-italic text-ivory">drop</em>. Une sélection serrée de sneakers et pièces lifestyle — Jordans, Yeezy, Dunks, raretés — chinées, vérifiées, présentées comme des œuvres. La maison fonctionne en <em className="not-italic text-ivory">dépôt-vente</em>&nbsp;: tu déposes, on s&apos;occupe du reste.
+                  Et puis il y a le{" "}
+                  <em className="not-italic text-ivory">drop</em>. Une sélection
+                  serrée de sneakers et pièces lifestyle — Dior, On, ASICS,
+                  Loewe, raretés — chinées, vérifiées, présentées comme des
+                  œuvres. La maison fonctionne en{" "}
+                  <em className="not-italic text-ivory">dépôt-vente</em>&nbsp;:
+                  tu déposes, on s&apos;occupe du reste.
                 </p>
               </Reveal>
-            </motion.div>
+            </div>
 
             <Reveal delay={0.45}>
               <div className="mt-14 grid grid-cols-2 gap-8 border-t hairline pt-10 md:grid-cols-4">

@@ -1,28 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { BooksyButton } from "@/components/ui/booksy-button";
 import { site } from "@/lib/site";
 
 export function Hero() {
-  const ref = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
   return (
     <section
       id="hero"
-      ref={ref}
       className="relative isolate min-h-[100svh] overflow-hidden grain"
     >
       {/* Background */}
-      <motion.div style={{ y }} className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10">
         <Image
           src="/images/atelier/hero-rooftop.jpg"
           alt="Coupe en plein air, skyline urbaine"
@@ -31,10 +21,9 @@ export function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Vignette + bottom fade */}
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/30" />
-      </motion.div>
+      </div>
 
       {/* Top corner labels */}
       <div className="container-x relative z-10 pt-28 md:pt-32">
@@ -45,7 +34,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-[11px] uppercase tracking-[0.32em] text-ivory/80"
           >
-            Est. Biot · Côte d'Azur
+            Est. Biot · Côte d&apos;Azur
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -59,10 +48,7 @@ export function Hero() {
       </div>
 
       {/* Wordmark + tagline */}
-      <motion.div
-        style={{ opacity }}
-        className="container-x relative z-10 flex min-h-[70svh] flex-col justify-center pt-16 md:pt-24"
-      >
+      <div className="container-x relative z-10 flex min-h-[70svh] flex-col justify-center pt-16 md:pt-24">
         <h1
           aria-label={`${site.name} — ${site.tagline}`}
           className="font-display text-balance leading-[0.86] text-ivory"
@@ -106,7 +92,7 @@ export function Hero() {
             </p>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Footer hero infos */}
       <div className="container-x relative z-10 mt-20 grid gap-3 pb-12 md:mt-32 md:grid-cols-3 md:gap-6">
