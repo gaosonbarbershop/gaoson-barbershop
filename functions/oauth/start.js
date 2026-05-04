@@ -1,5 +1,5 @@
 /**
- * GET /auth
+ * GET /oauth/start
  * Démarre le flow OAuth GitHub pour Decap CMS.
  * Redirige vers github.com/login/oauth/authorize avec le client_id
  * configuré dans les variables d'environnement Cloudflare Pages.
@@ -21,7 +21,7 @@ export const onRequestGet = ({ request, env }) => {
 
   const authUrl = new URL("https://github.com/login/oauth/authorize");
   authUrl.searchParams.set("client_id", clientId);
-  authUrl.searchParams.set("redirect_uri", `${url.origin}/callback`);
+  authUrl.searchParams.set("redirect_uri", `${url.origin}/oauth/callback`);
   authUrl.searchParams.set("scope", "repo,user");
 
   return Response.redirect(authUrl.toString(), 302);

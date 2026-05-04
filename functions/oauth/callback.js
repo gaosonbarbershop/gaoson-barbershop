@@ -1,5 +1,5 @@
 /**
- * GET /callback?code=...
+ * GET /oauth/callback?code=...
  * GitHub redirige ici après que l'utilisateur a autorisé l'app.
  * On échange le `code` contre un access_token via l'API GitHub
  * en utilisant le client_secret stocké côté serveur.

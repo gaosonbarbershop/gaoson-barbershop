@@ -3,7 +3,7 @@ backend:
   repo: gaosonbarbershop/gaoson-barbershop
   branch: main
   base_url: https://gaoson-barbershop.fr
-  auth_endpoint: auth
+  auth_endpoint: oauth/start
 
 publish_mode: simple
 media_folder: "public/images/atelier"
