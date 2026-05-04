@@ -1,9 +1,9 @@
 export const site = {
   name: "Gaoson's Barber Shop",
   shortName: "Gaoson",
-  tagline: "Crafted Cuts. Curated Kicks.",
+  tagline: "Crafted Cuts. Sharp Style.",
   description:
-    "Salon de coiffure homme premium et dépôt-vente sneakers & lifestyle, ancré au cœur de Biot. Coupe nette, héritage authentique, culture de la rue.",
+    "Salon de coiffure homme premium ancré au cœur de Biot. Coupe nette, barbe sculptée, rasage à la lame — le rituel masculin sans compromis.",
   address: {
     street: "32 Rue Saint-Sébastien",
     postalCode: "06410",

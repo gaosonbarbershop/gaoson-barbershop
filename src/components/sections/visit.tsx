@@ -14,7 +14,7 @@ export function Visit() {
           <div className="md:col-span-3">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink/70">
-                ‹ 06 / Visite ›
+                ‹ 05 / Visite ›
               </p>
             </Reveal>
           </div>

@@ -11,7 +11,7 @@ export function Footer() {
       <Marquee
         items={[
           "Crafted cuts",
-          "Curated kicks",
+          "Sharp style",
           "Biot · 06410",
           "Mar — Dim · 08:45 — 19:00",
           "Booksy ↗",
@@ -21,7 +21,7 @@ export function Footer() {
       <div className="container-x py-20 md:py-28">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Logo className="h-24 w-[280px] text-ivory md:h-32 md:w-[360px]" />
+            <Logo className="h-28 text-ivory md:h-44" />
             <p className="font-display mt-10 text-3xl italic leading-tight text-ivory md:text-4xl">
               Until next cut.
             </p>
@@ -47,11 +47,6 @@ export function Footer() {
                 <li>
                   <a href="#services" className="text-ghost/85 hover:text-ivory">
                     Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#drop" className="text-ghost/85 hover:text-ivory">
-                    Le drop
                   </a>
                 </li>
                 <li>
@@ -137,15 +132,6 @@ export function Footer() {
           <p>
             Hébergé par {site.legal.host.name} —{" "}
             <span className="hidden sm:inline">{site.legal.host.address}</span>
-          </p>
-          <p>
-            <a
-              href="/admin"
-              className="text-bone/55 hover:text-ivory"
-              aria-label="Espace gestion"
-            >
-              Espace gestion ↗
-            </a>
           </p>
         </div>
       </div>

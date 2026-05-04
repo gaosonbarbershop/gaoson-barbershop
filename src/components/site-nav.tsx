@@ -11,7 +11,6 @@ import { Logo } from "./logo";
 const links = [
   { href: "#manifesto", label: "Maison" },
   { href: "#services", label: "Services" },
-  { href: "#drop", label: "Drop" },
   { href: "#atelier", label: "Atelier" },
   { href: "#visite", label: "Visite" },
 ];
@@ -44,13 +43,13 @@ export function SiteNav() {
             : "bg-transparent",
         )}
       >
-        <nav className="container-x flex h-16 items-center justify-between md:h-20">
+        <nav className="container-x flex h-20 items-center justify-between md:h-24">
           <a
             href="#hero"
             className="text-ivory transition-opacity hover:opacity-80"
             aria-label={site.name}
           >
-            <Logo className="h-9 w-[110px] md:h-10 md:w-[124px]" />
+            <Logo className="h-12 md:h-14" />
           </a>
 
           <ul className="hidden items-center gap-9 md:flex">
@@ -98,8 +97,8 @@ export function SiteNav() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="container-x flex h-16 items-center justify-between">
-              <Logo className="h-9 w-[110px] text-ivory" />
+            <div className="container-x flex h-20 items-center justify-between">
+              <Logo className="h-12 text-ivory" />
               <button
                 type="button"
                 aria-label="Fermer"

@@ -49,7 +49,7 @@ export function Atelier() {
           <div className="md:col-span-3">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/70">
-                ‹ 04 / Atelier ›
+                ‹ 03 / Atelier ›
               </p>
             </Reveal>
           </div>

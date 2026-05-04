@@ -13,7 +13,7 @@ export function Reviews() {
           <div className="md:col-span-3">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/70">
-                ‹ 05 / Avis ›
+                ‹ 04 / Avis ›
               </p>
             </Reveal>
           </div>

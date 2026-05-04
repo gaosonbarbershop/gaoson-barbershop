@@ -9,9 +9,9 @@ export function Manifesto() {
       <Marquee
         items={[
           "Crafted cuts",
-          "Curated kicks",
+          "Sharp style",
           "Biot · 06410",
-          "Heritage × Streetwear",
+          "Heritage barbering",
           "Mar — Dim",
           "Booksy ↗",
         ]}
@@ -42,21 +42,19 @@ export function Manifesto() {
                   Gaoson&apos;s, c&apos;est un atelier où la{" "}
                   <em className="not-italic text-ivory">précision du geste</em>{" "}
                   rencontre la{" "}
-                  <em className="not-italic text-ivory">culture de la rue</em>.
-                  Une coupe nette. Une barbe sculptée. Un rasage à la lame. Le
-                  rituel masculin, sans compromis, dans un décor qui respire le
-                  cuir, le bois et le néon discret.
+                  <em className="not-italic text-ivory">culture du soin</em>.
+                  Une coupe nette. Une barbe sculptée. Un rasage à la lame —
+                  serviette chaude, mousse, baume apaisant. Le rituel masculin
+                  sans compromis.
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
                 <p className="text-base leading-relaxed text-bone/80 sm:text-lg">
-                  Et puis il y a le{" "}
-                  <em className="not-italic text-ivory">drop</em>. Une sélection
-                  serrée de sneakers et pièces lifestyle — Dior, On, ASICS,
-                  Loewe, raretés — chinées, vérifiées, présentées comme des
-                  œuvres. La maison fonctionne en{" "}
-                  <em className="not-italic text-ivory">dépôt-vente</em>&nbsp;:
-                  tu déposes, on s&apos;occupe du reste.
+                  Un seul lieu, deux fauteuils, deux miroirs lumineux. Un{" "}
+                  <em className="not-italic text-ivory">décor</em> qui respire
+                  le cuir, le béton et le néon discret. Mardi au dimanche, sur
+                  rendez-vous Booksy — ou en walk-in si on a un créneau libre.
+                  Tu repars net, posé, prêt.
                 </p>
               </Reveal>
             </div>
@@ -67,7 +65,7 @@ export function Manifesto() {
                   { kpi: "08:45", label: "Premier client" },
                   { kpi: "06.410", label: "Biot, France" },
                   { kpi: "1∶1", label: "Sur rendez-vous" },
-                  { kpi: "100%", label: "Authentifié" },
+                  { kpi: "Mar — Dim", label: "Tous les jours sauf lundi" },
                 ].map((item) => (
                   <div key={item.label}>
                     <p className="font-display text-3xl text-ivory sm:text-4xl">

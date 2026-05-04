@@ -2,11 +2,9 @@ import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
 /**
- * Wordmark Gaoson's en SVG vectorisé.
- *
- * Utilise mask-image pour rester teinté par `color` du parent (currentColor).
- * Le ratio est ~3:1 (large × haute), à toi de définir width/height ou h-X
- * via className. La couleur suit `color`.
+ * Wordmark Gaoson's en SVG vectorisé. ViewBox ~1800×705 (ratio 2.55:1).
+ * Couleur via `color` du parent (currentColor mask), donc utilisable sur
+ * fond ink comme sur fond ivory sans changer de fichier.
  */
 export function Logo({
   className,
@@ -20,8 +18,7 @@ export function Logo({
       role="img"
       aria-label={ariaLabel}
       className={cn(
-        "inline-block bg-current align-middle",
-        // par défaut : 3.5rem haut × auto large pour respecter le ratio du SVG
+        "inline-block bg-current align-middle aspect-[1800/705]",
         className,
       )}
       style={{

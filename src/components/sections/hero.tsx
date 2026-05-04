@@ -22,12 +22,12 @@ export function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-ink/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/45 via-ink/25 to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/65 via-transparent to-ink/35" />
       </div>
 
       {/* Top corner labels */}
-      <div className="container-x relative z-10 pt-28 md:pt-32">
+      <div className="container-x relative z-10 pt-32 md:pt-36">
         <div className="flex items-start justify-between">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -48,41 +48,28 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Wordmark + tagline */}
-      <div className="container-x relative z-10 flex min-h-[70svh] flex-col justify-center pt-16 md:pt-24">
+      {/* Logo héros + tagline */}
+      <div className="container-x relative z-10 flex min-h-[70svh] flex-col justify-center pt-16 md:pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6"
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <Logo
-            className="h-16 w-[200px] text-ivory sm:h-20 sm:w-[260px]"
+            className="h-44 text-ivory sm:h-56 md:h-72 lg:h-80"
             ariaLabel={`${site.name} — wordmark`}
           />
         </motion.div>
 
-        <h1
-          aria-label={`${site.name} — ${site.tagline}`}
-          className="font-display text-balance leading-[0.86] text-ivory"
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display mt-8 text-3xl italic leading-tight text-ghost/95 sm:text-4xl md:mt-12 md:text-5xl"
         >
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-[clamp(4rem,16vw,15rem)]"
-          >
-            Gaoson&apos;s
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="block italic text-[clamp(3.5rem,14vw,13rem)] text-ghost/95"
-          >
-            Barber Shop.
-          </motion.span>
-        </h1>
+          Crafted Cuts.{" "}
+          <span className="text-ivory">Sharp Style.</span>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,11 +78,9 @@ export function Hero() {
           className="mt-12 grid gap-10 md:grid-cols-[1fr_auto] md:items-end md:gap-16"
         >
           <p className="max-w-md text-base leading-relaxed text-ghost sm:text-lg">
-            <span className="text-ivory">Crafted cuts.</span>{" "}
-            <span className="text-ivory">Curated kicks.</span>
-            <br className="hidden sm:block" />
-            Salon de coiffure homme premium et dépôt-vente sneakers, ancré au
-            cœur de Biot.
+            Salon de coiffure homme premium ancré au cœur de Biot. Coupe nette,
+            barbe sculptée, rasage à la lame — le rituel masculin sans
+            compromis.
           </p>
 
           <div className="flex flex-col items-start gap-5 md:items-end">
