@@ -4,24 +4,23 @@
  * Redirige vers github.com/login/oauth/authorize avec le client_id
  * configuré dans les variables d'environnement Cloudflare Pages.
  *
- * Variables Pages requises :
- *   - GITHUB_CLIENT_ID  (Production + Preview)
- *
- * Decap CMS appelle cette URL avec ?provider=github (ignoré ici, on
- * utilise toujours github).
+ * Variables Pages requises (l'un OU l'autre, prefer OAUTH_*):
+ *   - OAUTH_CLIENT_ID  ou  GITHUB_CLIENT_ID
  */
 
 export const onRequestGet = ({ request, env }) => {
   const url = new URL(request.url);
+  const clientId = env.OAUTH_CLIENT_ID || env.GITHUB_CLIENT_ID;
 
-  if (!env.GITHUB_CLIENT_ID) {
-    return new Response("GITHUB_CLIENT_ID env var is missing", {
-      status: 500,
-    });
+  if (!clientId) {
+    return new Response(
+      "OAUTH_CLIENT_ID (or GITHUB_CLIENT_ID) env var is missing",
+      { status: 500 },
+    );
   }
 
   const authUrl = new URL("https://github.com/login/oauth/authorize");
-  authUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
+  authUrl.searchParams.set("client_id", clientId);
   authUrl.searchParams.set("redirect_uri", `${url.origin}/callback`);
   authUrl.searchParams.set("scope", "repo,user");
 

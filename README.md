@@ -119,8 +119,10 @@ Sur le compte GitHub `gaosonbarbershop` :
 Dans le dashboard Cloudflare Pages → ton projet → **Settings** →
 **Environment variables**, ajoute pour **Production** + **Preview** :
 
-- `GITHUB_CLIENT_ID` — ton Client ID
-- `GITHUB_CLIENT_SECRET` — ton Client Secret (coche **Encrypt** pour le secret)
+- `OAUTH_CLIENT_ID` — ton Client ID GitHub OAuth (Encrypt)
+- `OAUTH_CLIENT_SECRET` — ton Client Secret (Encrypt)
+
+Le code accepte aussi `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` comme alternative.
 
 Re-deploy le projet après avoir ajouté les variables.
 

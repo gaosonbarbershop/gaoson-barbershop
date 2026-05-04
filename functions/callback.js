@@ -4,12 +4,9 @@
  * On échange le `code` contre un access_token via l'API GitHub
  * en utilisant le client_secret stocké côté serveur.
  *
- * Variables Pages requises :
- *   - GITHUB_CLIENT_ID      (Production + Preview)
- *   - GITHUB_CLIENT_SECRET  (Production + Preview, secret type)
- *
- * Renvoie une page HTML qui postMessage le token à window.opener
- * (= Decap CMS dans la fenêtre d'origine).
+ * Variables Pages requises (l'un OU l'autre, prefer OAUTH_*):
+ *   - OAUTH_CLIENT_ID      ou  GITHUB_CLIENT_ID
+ *   - OAUTH_CLIENT_SECRET  ou  GITHUB_CLIENT_SECRET
  */
 
 function renderPostMessage(status, payload) {
@@ -37,9 +34,12 @@ export const onRequestGet = async ({ request, env }) => {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
 
-  if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
+  const clientId = env.OAUTH_CLIENT_ID || env.GITHUB_CLIENT_ID;
+  const clientSecret = env.OAUTH_CLIENT_SECRET || env.GITHUB_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
     return new Response(
-      "GITHUB_CLIENT_ID or GITHUB_CLIENT_SECRET env var is missing",
+      "OAUTH_CLIENT_ID/SECRET (or GITHUB_CLIENT_ID/SECRET) env var is missing",
       { status: 500 },
     );
   }
@@ -60,8 +60,8 @@ export const onRequestGet = async ({ request, env }) => {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        client_id: env.GITHUB_CLIENT_ID,
-        client_secret: env.GITHUB_CLIENT_SECRET,
+        client_id: clientId,
+        client_secret: clientSecret,
         code,
       }),
     },
