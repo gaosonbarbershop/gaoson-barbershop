@@ -53,7 +53,10 @@ export const metadata: Metadata = {
     description: site.description,
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/logo-gaoson.svg", type: "image/svg+xml" },
+    ],
   },
   alternates: {
     canonical: "https://gaoson-barbershop.fr",

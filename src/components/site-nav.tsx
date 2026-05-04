@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 import { BooksyButton } from "./ui/booksy-button";
+import { Logo } from "./logo";
 
 const links = [
   { href: "#manifesto", label: "Maison" },
@@ -46,10 +47,10 @@ export function SiteNav() {
         <nav className="container-x flex h-16 items-center justify-between md:h-20">
           <a
             href="#hero"
-            className="font-display text-xl tracking-tight text-ghost"
+            className="text-ivory transition-opacity hover:opacity-80"
             aria-label={site.name}
           >
-            Gaoson<span className="text-ivory">.</span>
+            <Logo className="h-9 w-[110px] md:h-10 md:w-[124px]" />
           </a>
 
           <ul className="hidden items-center gap-9 md:flex">
@@ -98,9 +99,7 @@ export function SiteNav() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="container-x flex h-16 items-center justify-between">
-              <span className="font-display text-xl tracking-tight">
-                Gaoson<span className="text-ivory">.</span>
-              </span>
+              <Logo className="h-9 w-[110px] text-ivory" />
               <button
                 type="button"
                 aria-label="Fermer"

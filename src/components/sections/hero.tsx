@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { BooksyButton } from "@/components/ui/booksy-button";
+import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -49,6 +50,18 @@ export function Hero() {
 
       {/* Wordmark + tagline */}
       <div className="container-x relative z-10 flex min-h-[70svh] flex-col justify-center pt-16 md:pt-24">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-6"
+        >
+          <Logo
+            className="h-16 w-[200px] text-ivory sm:h-20 sm:w-[260px]"
+            ariaLabel={`${site.name} — wordmark`}
+          />
+        </motion.div>
+
         <h1
           aria-label={`${site.name} — ${site.tagline}`}
           className="font-display text-balance leading-[0.86] text-ivory"
@@ -56,7 +69,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="block text-[clamp(4rem,16vw,15rem)]"
           >
             Gaoson&apos;s
@@ -64,7 +77,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="block italic text-[clamp(3.5rem,14vw,13rem)] text-ghost/95"
           >
             Barber Shop.

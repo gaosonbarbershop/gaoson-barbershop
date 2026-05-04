@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: indysignerr/gaoson-barbershop
+  repo: gaosonbarbershop/gaoson-barbershop
   branch: main
   base_url: https://gaoson-cms-oauth.YOUR-WORKER-SUBDOMAIN.workers.dev
   auth_endpoint: auth

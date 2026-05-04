@@ -1,5 +1,6 @@
 import { InstagramIcon } from "@/components/icons/instagram-icon";
 import { Marquee } from "@/components/ui/marquee";
+import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -20,10 +21,9 @@ export function Footer() {
       <div className="container-x py-20 md:py-28">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="font-display text-5xl leading-[0.9] tracking-tight text-ghost md:text-6xl lg:text-7xl">
-              Gaoson&apos;s.
-              <br />
-              <span className="italic text-ivory">Until next cut.</span>
+            <Logo className="h-24 w-[280px] text-ivory md:h-32 md:w-[360px]" />
+            <p className="font-display mt-10 text-3xl italic leading-tight text-ivory md:text-4xl">
+              Until next cut.
             </p>
             <p className="mt-8 max-w-sm text-sm text-bone/60">
               {site.tagline} — {site.address.full}
