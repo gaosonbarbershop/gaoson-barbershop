@@ -21,7 +21,7 @@ export function Footer() {
       <div className="container-x py-20 md:py-28">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Logo className="h-28 text-ivory md:h-44" />
+            <Logo className="text-6xl text-ivory md:text-8xl" />
             <p className="font-display mt-10 text-3xl italic leading-tight text-ivory md:text-4xl">
               Until next cut.
             </p>

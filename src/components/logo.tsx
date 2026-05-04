@@ -2,35 +2,40 @@ import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
 /**
- * Wordmark Gaoson's en SVG vectorisé. ViewBox ~1800×705 (ratio 2.55:1).
- * Couleur via `color` du parent (currentColor mask), donc utilisable sur
- * fond ink comme sur fond ivory sans changer de fichier.
+ * Wordmark Gaoson's en blackletter (UnifrakturMaguntia) + sous-titre
+ * BARBER SHOP en sans-serif technique. Hérite de `color` du parent —
+ * fonctionne sur fond ink ou ivory sans changer de fichier.
+ *
+ * Layout fluide via `font-size`. Utilise `text-` Tailwind ou un fontSize
+ * explicite via le className.
  */
 export function Logo({
   className,
+  showSubtitle = true,
   ariaLabel = `${site.name} — wordmark`,
 }: {
   className?: string;
+  showSubtitle?: boolean;
   ariaLabel?: string;
 }) {
   return (
     <span
       role="img"
       aria-label={ariaLabel}
-      className={cn(
-        "inline-block bg-current align-middle aspect-[1800/705]",
-        className,
+      className={cn("inline-flex flex-col items-center leading-none", className)}
+    >
+      <span aria-hidden="true" className="font-wordmark tracking-tight">
+        Gaoson&apos;s
+      </span>
+      {showSubtitle && (
+        <span
+          aria-hidden="true"
+          className="mt-[0.25em] font-mono uppercase tracking-[0.5em] text-[0.18em] opacity-90"
+          style={{ paddingLeft: "0.5em" }}
+        >
+          Barber Shop
+        </span>
       )}
-      style={{
-        WebkitMaskImage: "url(/images/logo-gaoson.svg)",
-        maskImage: "url(/images/logo-gaoson.svg)",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
-    />
+    </span>
   );
 }

@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import {
+  Instrument_Serif,
+  Inter_Tight,
+  JetBrains_Mono,
+  UnifrakturMaguntia,
+} from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -19,6 +24,13 @@ const interTight = Inter_Tight({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const blackletter = UnifrakturMaguntia({
+  variable: "--font-blackletter",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -53,10 +65,7 @@ export const metadata: Metadata = {
     description: site.description,
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/images/logo-gaoson.svg", type: "image/svg+xml" },
-    ],
+    icon: "/favicon.ico",
   },
   alternates: {
     canonical: "https://gaoson-barbershop.fr",
@@ -110,7 +119,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${blackletter.variable} antialiased`}
     >
       <body className="bg-ink text-ghost min-h-screen overflow-x-clip">
         <script

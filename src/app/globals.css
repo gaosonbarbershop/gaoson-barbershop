@@ -23,6 +23,7 @@
   --font-display: var(--font-instrument-serif);
   --font-sans: var(--font-inter-tight);
   --font-mono: var(--font-jetbrains-mono);
+  --font-wordmark: var(--font-blackletter);
 
   /* Easings */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

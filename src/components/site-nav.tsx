@@ -49,7 +49,7 @@ export function SiteNav() {
             className="text-ivory transition-opacity hover:opacity-80"
             aria-label={site.name}
           >
-            <Logo className="h-12 md:h-14" />
+            <Logo className="text-3xl md:text-4xl" />
           </a>
 
           <ul className="hidden items-center gap-9 md:flex">
@@ -98,7 +98,7 @@ export function SiteNav() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="container-x flex h-20 items-center justify-between">
-              <Logo className="h-12 text-ivory" />
+              <Logo className="text-3xl text-ivory" />
               <button
                 type="button"
                 aria-label="Fermer"
