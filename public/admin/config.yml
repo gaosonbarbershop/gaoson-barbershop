@@ -2,8 +2,7 @@ backend:
   name: github
   repo: gaosonbarbershop/gaoson-barbershop
   branch: main
-  base_url: https://gaoson-barbershop.fr
-  auth_endpoint: oauth/start
+  # base_url + auth_endpoint à compléter une fois le proxy OAuth en place
 
 publish_mode: simple
 media_folder: "public/images/atelier"

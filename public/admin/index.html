@@ -9,33 +9,9 @@
     <style>
       body { background: #050505; color: #e8e4dc; font-family: system-ui, -apple-system, sans-serif; }
       [data-netlify-identity-button], [data-netlify-identity-menu] { display: none !important; }
-      .err { padding: 2rem; color: #ff8a8a; font-family: ui-monospace, monospace; }
     </style>
   </head>
   <body>
-    <!-- Manual init so we can override base_url with the current origin
-         (works on pages.dev preview AND on the custom domain). -->
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-    <script>
-      window.CMS_MANUAL_INIT = true;
-    </script>
     <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
-    <script>
-      fetch("/admin/config.yml")
-        .then((res) => {
-          if (!res.ok) throw new Error("config.yml not found (" + res.status + ")");
-          return res.text();
-        })
-        .then((text) => {
-          const config = jsyaml.load(text);
-          config.backend = config.backend || {};
-          config.backend.base_url = window.location.origin;
-          window.CMS.init({ config: config });
-        })
-        .catch((err) => {
-          document.body.innerHTML =
-            '<pre class="err">Erreur Decap: ' + err.message + "</pre>";
-        });
-    </script>
   </body>
 </html>
