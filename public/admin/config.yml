@@ -2,7 +2,10 @@ backend:
   name: github
   repo: gaosonbarbershop/gaoson-barbershop
   branch: main
-  # base_url + auth_endpoint à compléter une fois le proxy OAuth en place
+  # OAuth proxy hébergé sur le même domaine via Cloudflare Pages Functions
+  # (functions/auth.js et functions/callback.js)
+  base_url: https://gaoson-barbershop.fr
+  auth_endpoint: auth
 
 publish_mode: simple
 media_folder: "public/images/atelier"
