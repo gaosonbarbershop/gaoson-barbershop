@@ -9,7 +9,7 @@ address:
   city: Biot
   country: France
 hours:
-  - days: Mardi — Dimanche
+  - days: Mardi — Samedi
     time: 08:45 — 19:00
   - days: Lundi
     time: Fermé
